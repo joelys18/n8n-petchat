@@ -1,7 +1,4 @@
 FROM n8nio/n8n:latest
 
-# Copiar el archivo .env al contenedor
-COPY ./n8n_data/.env /home/node/.n8n/.env
-
-# Establecer el puerto
+# Exponer el puerto de n8n
 EXPOSE 5678
