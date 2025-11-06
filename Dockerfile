@@ -1,14 +1,15 @@
 # Imagen base oficial de n8n
 FROM n8nio/n8n:latest
 
-# Definir el directorio de trabajo
+# Directorio de trabajo donde n8n guarda los datos
 WORKDIR /data
 
-# Copiar las variables de entorno (Render las inyecta automáticamente)
-# No es necesario copiar .env manualmente
+# Render asigna el puerto dinámicamente
+ENV N8N_PORT=${PORT}
+ENV WEBHOOK_URL=${WEBHOOK_URL}
 
-# Exponer el puerto que Render asignará dinámicamente
-EXPOSE 5678
+# Obligatorio para evitar el warning de permisos
+ENV N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
 
-# Comando de inicio para Render (usa el túnel para evitar "Cannot GET /")
-CMD ["n8n", "start", "--tunnel"]
+# Esta línea evita problemas con limitaciones del túnel (NO usar --tunnel en producción)
+CMD ["n8n", "--port", "${PORT}"]
