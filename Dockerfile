@@ -9,7 +9,4 @@ ENV N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
 # Base de datos
 ENV DB_TYPE=postgresdb
 
-# Exponer puerto interno de n8n
 EXPOSE 5678
-
-# Usar el entrypoint por defecto (NO agregues CMD manual)
